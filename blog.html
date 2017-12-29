@@ -1,0 +1,24 @@
+---
+layout: default
+title: Blog Posts
+use_math: true
+---
+<!-- Inspired from: https://github.com/irenetrampoline/irenetrampoline.github.io/blob/master/index.html -->
+<div id="home">
+    {% for post in site.posts %}
+    <h1 class="title"><a href="{{ post.url }}">{{ post.title }}</a></h1>
+
+    <p class="meta">
+        {{ post.date | date: "%B %d, %Y" }} {% if post.length %} · {{post.length}} {% endif %}
+    </p>
+
+    <div id="post">
+        {{ post.excerpt }}
+    </div>
+    {% capture content_words %} {{ post.content | number_of_words }} {% endcapture %} {% capture excerpt_words %} {{ post.excerpt | number_of_words }} {% endcapture %} {% if excerpt_words != content_words %}
+    <p><a class="btn btn-sm btn-primary" href="{{ post.url }}">(read more)</a>
+    </p>
+    {% endif %}
+
+    <hr> {% endfor %}
+</div>
